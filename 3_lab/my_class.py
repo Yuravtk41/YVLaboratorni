@@ -1,57 +1,56 @@
-class MyName:
-    """Опис класу / Документація
+
+
+
+
+class MySuperClass:
+    """Тестовий клас, зараз реалізуємо опис студента
+    
+    ---
+
+    surname : str
+        Вороновський
+    
     """
-    total_names = 0  # Class Variable
-
-    def __init__(self, name=None) -> None:
-        self.name = name if name is not None else self.anonymous_user().name  # Class attributes / Instance variables
-        MyName.total_names += 1  # modify class variable
-        self.my_id = MyName.total_names  # Use the class variable correctly
-
-    @property
-    def whoami(self): 
-        """Class property
-        return: повертаємо ім'я 
+    def __init__(self, surname, name, mark):
         """
-        return f"My name is {self.name}"
+        Ініціалізуємо обєкт
+        - в середині конструктора створюються атрибути
+        """
+        print("Викликаємо __init__")
+        self.surname = surname
+        self.name = name
+        self.mark = mark
     
-    @property
-    def my_email(self) -> str:
-        """Class property
-        return: повертаємо емейл
-        """
-        return self.create_email()
+    def __repr__(self):
+        return "Представлення обєкту Студент, його задають: MySuperClass(surname, name, mark)"
     
-    def create_email(self) -> str:
-        """Instance method
+    def __len__(self):
+        return len(self.surname)
+
+def function_in_module():
+    pass
+
+# Ось так нам допоміг ChatGPT зробити опис
+class Students:
+    """
+    Клас Students для зберігання інформації про студентів.
+
+    Attributes:
+        surname (str): Вороновський.
+        name (str): Юрій.
+        mark (int): 4.
+    """
+
+    def __init__(self, surname: str, name: str, mark: int):
         """
-        return f"{self.name}@itcollege.lviv.ua"
+        Ініціалізує новий екземпляр класу Students.
 
-    @classmethod
-    def anonymous_user(cls):
-        """Class method
+        Args:
+            surname (str): Вороновський.
+            name (str): Юрій.
+            mark (int): 4.
         """
-        return cls("Anonymous")
-    
-    @staticmethod
-    def say_hello(message="Hello to everyone!"):
-        """Static method
-        """
-        return f"You say: {message}"
-
-print("Let's Start!")
-
-names = ("Yura", "Marta", None)  
-all_names = {name: MyName(name) for name in names}
-
-for name, me in all_names.items():
-    print(f"""{">*<"*20}
-This is object: {me} 
-This is object attribute: {me.name} / {me.my_id}
-This is {type(me.whoami)}: {me.whoami} / {me.my_email}
-This is {type(me.create_email)} call: {me.create_email()}
-This is static {type(MyName.say_hello)} with defaults: {MyName.say_hello()} 
-This is class variable {type(MyName.total_names)}: from class {MyName.total_names} / from object {me.total_names}
-{"<*>"*20}""")
-
-print(f"We are done. We created {MyName.total_names} names!")
+        print("Викликаємо __init__")
+        self.surname = surname
+        self.name = name
+        self.mark = mark
